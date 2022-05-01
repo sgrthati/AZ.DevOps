@@ -19,5 +19,5 @@ steps:
 - script: sudo java -version
   displayName: Java Version
 
-- script: ls -al && sudo bash ./build.sh 
+- script: ls -al && sudo bash ./build.sh && ls -al
   displayName: Create War file
