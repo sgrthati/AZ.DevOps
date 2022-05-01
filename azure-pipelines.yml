@@ -23,4 +23,13 @@ steps:
   displayName: Create War file
 
 - script: ls -al && mv ROOT.war ROOT$(Build.BuildNumber).war && ls -al
-  displayName: Create War file
+  displayName: Rename War file
+
+- task: CopyFiles@2
+  inputs:
+    Contents: 'ROOT$(Build.BuildNumber).war'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    Overwrite: true
+
+- script: ls -al $(Build.ArtifactStagingDirectory)
+  displayName: Rename War file    
