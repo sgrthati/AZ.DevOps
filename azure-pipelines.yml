@@ -45,4 +45,4 @@ steps:
     azureSubscription: 'Free Trial(5141fc66-09b9-47e0-b096-e37c00de2a26)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob upload-batch --account-name chikkiartifacts --account-key $(STORAGE_ACCOUNT_KEY) --container-name buildartifacts --pattern ROOT$(Build.BuildNumber).war -d buildartifacts -s /home/sagar/myagent/_work/1/a'
+    inlineScript: 'az storage blob upload-batch --account-name chikkiartifacts --account-key $(STORAGE_ACCOUNT_KEY) --pattern ROOT$(Build.BuildNumber).war -d buildartifacts -s /home/sagar/myagent/_work/1/a'
