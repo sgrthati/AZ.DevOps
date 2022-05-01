@@ -4,7 +4,7 @@ trigger:
 pool:
  name: Default
  demands:
-   - agent.name -equals SRIVM
+   - agent.name -equals ubuntu
 
 steps:
 - script: ls -al && pwd
