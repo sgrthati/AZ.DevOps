@@ -21,3 +21,6 @@ steps:
 
 - script: ls -al && sudo bash ./build.sh && ls -al
   displayName: Create War file
+
+- script: ls -al && mv ROOT.war ROOT$(Build.BuildId).war && ls -al
+  displayName: Create War file
