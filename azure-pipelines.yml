@@ -1,0 +1,23 @@
+trigger:
+- master
+
+pool:
+ name: Default
+ demands:
+   - agent.name -equals SRIVM
+
+steps:
+- script: ls -al && pwd && $(build.buildNumber)
+  displayName: List Files & Cuurent Working Directory
+
+- script: sudo apt update
+  displayName: List Files
+
+- script: sudo apt install -y openjdk-8-jdk
+  displayName: INstalling Java
+
+- script: sudo java -version
+  displayName: Java Version
+
+- script: ls -al && sudo bash ./build.sh 
+  displayName: Create War file
