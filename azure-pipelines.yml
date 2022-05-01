@@ -40,6 +40,10 @@ steps:
     ArtifactName: 'ROOT$(Build.BuildNumber).war'
     publishLocation: Container
 
-- task: AzureCLI@2
+- task: AzureFileCopy@4
   inputs:
-    azureSubscription: 
+    SourcePath: '*.war'
+    azureSubscription: 'Free Trial(5141fc66-09b9-47e0-b096-e37c00de2a26)'
+    Destination: 'AzureBlob'
+    storage: 'chikkiartifacts'
+    ContainerName: 'buildartifacts'
