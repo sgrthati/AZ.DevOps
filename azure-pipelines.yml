@@ -39,3 +39,7 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'ROOT$(Build.BuildNumber).war'
     publishLocation: Container
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 
