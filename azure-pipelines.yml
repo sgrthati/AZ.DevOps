@@ -40,10 +40,9 @@ steps:
     ArtifactName: 'ROOT$(Build.BuildNumber).war'
     publishLocation: Container
 
-- task: AzureFileCopy@4
+- task: AzureCLI@2
   inputs:
-    SourcePath: '*.war'
     azureSubscription: 'Free Trial(5141fc66-09b9-47e0-b096-e37c00de2a26)'
-    Destination: 'AzureBlob'
-    storage: 'chikkiartifacts'
-    ContainerName: 'buildartifacts'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az storage blob upload-batch --account-name chikkiartifacts --account-key $(STORAGE_ACCOUNT_KEY) --destination buildartifacts'
