@@ -7,7 +7,7 @@ pool:
    - agent.name -equals SRIVM
 
 steps:
-- script: ls -al && pwd && $(build.buildNumber)
+- script: ls -al && pwd
   displayName: List Files & Cuurent Working Directory
 
 - script: sudo apt update
