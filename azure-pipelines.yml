@@ -32,4 +32,10 @@ steps:
     Overwrite: true
 
 - script: ls -al $(Build.ArtifactStagingDirectory)
-  displayName: Rename War file    
+  displayName: Moving to artifact folder and list artifacts
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'ROOT$(Build.BuildNumber).war'
+    publishLocation: Container
