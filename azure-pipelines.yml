@@ -46,3 +46,10 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: 'az storage blob upload-batch --account-name chikkiartifacts --account-key $(STORAGE_ACCOUNT_KEY) --pattern ROOT$(Build.BuildNumber).war -d buildartifacts -s /home/sagar/myagent/_work/1/a'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'chikkiACR'
+    repository: 'azuredevops'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
