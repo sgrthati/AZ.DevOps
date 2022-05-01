@@ -59,4 +59,4 @@ steps:
     azureSubscription: 'Free Trial(5141fc66-09b9-47e0-b096-e37c00de2a26)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az container create -g SRI --registry-username chikki --registry-password $(ACR_PWD) --name sridev-$(Build.BuildNumber) --image chikki.azurecr.io/azuredevops:$(Build.BuildNumber) --cpu 1 --memory 1 --ports 8080 --dns-name-label sridev-$(Build.BuildId) --location centralus  '
+    inlineScript: 'az container create -g SRI --registry-username chikki --registry-password $(ACR_PWD) --name sridev-$(Build.BuildId) --image chikki.azurecr.io/azuredevops:$(Build.BuildNumber) --cpu 1 --memory 1 --ports 8080 --dns-name-label sridev-$(Build.BuildId) --location centralus  '
