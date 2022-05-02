@@ -42,7 +42,7 @@ steps:
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'Free Trial(5141fc66-09b9-47e0-b096-e37c00de2a26)'
+    azureSubscription: 'Azure Service connection'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: 'az storage blob upload-batch --account-name chikkiartifacts --account-key $(STORAGE_ACCOUNT_KEY) --pattern ROOT$(Build.BuildId).war -d buildartifacts -s /home/sagar/myagent/_work/1/a'
@@ -56,7 +56,7 @@ steps:
 
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'Free Trial(5141fc66-09b9-47e0-b096-e37c00de2a26)'
+    azureSubscription: 'Azure Service connection'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: 'az container create -g SRI --registry-username chikki --registry-password $(ACR_PWD) --name sridev-$(Build.BuildId) --image chikki.azurecr.io/azuredevops:$(Build.BuildId) --cpu 1 --memory 1 --ports 8080 --dns-name-label sridev-$(Build.BuildId) --location centralus  '
