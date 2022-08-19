@@ -66,6 +66,10 @@ now we have to implement Steps in Release pipeline
 ![image](https://user-images.githubusercontent.com/101870480/185592083-f5418f54-efbb-46fd-9690-999fc5a75729.png)
 
 same way i have created test and prod and dev and staging
+
+to acess portal we have to use :(here 102 is Build.BuildID
+
+dev-102.centralindia.azurecontainer.io:8080/ROOT102/
    
 
 
