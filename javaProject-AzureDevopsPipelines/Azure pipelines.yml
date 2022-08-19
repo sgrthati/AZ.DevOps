@@ -1,0 +1,61 @@
+# Variable Group 'Sample Java' was defined in the Variables tab
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: refs/heads/Terraform
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    name: satishjava
+  steps:
+  - checkout: self
+  - task: Bash@3
+    displayName: installing java
+    inputs:
+      targetType: inline
+      script: >
+        # Write your commands here
+
+
+        sudo apt install -y openjdk-8-jdk && sudo apt install -y unzip
+  - task: Bash@3
+    displayName: 'Packaging '
+    inputs:
+      targetType: inline
+      script: >
+        rm -rf ROOT* && sudo bash ./build.sh
+  - task: Bash@3
+    displayName: Renaming Package name
+    inputs:
+      targetType: inline
+      script: >
+        mv ROOT.war ROOT$(build.buildId).war
+  - task: Bash@3
+    displayName: Installing Docker
+    inputs:
+      targetType: inline
+      script: >+
+        sudo apt install docker.io && sudo chmod 777 /var/run/docker.sock
+
+  - task: Docker@2
+    displayName: Docker & ACR  buildAndPush
+    inputs:
+      containerRegistry: a1a49c4b-454b-40d9-9de6-701e15612939
+      repository: sgrthati/tomcatsnakes
+      buildContext: $(Build.Repository.LocalPath)
+      tags: $(build.buildId)
+      addPipelineData: false
+      addBaseImageData: false
+  - task: CopyFiles@2
+    displayName: Copy Files terraform Temp to artifact folder
+    inputs:
+      SourceFolder: Terraform
+      TargetFolder: ' $(build.artifactstagingdirectory)/terraform/'
+      OverWrite: true
+  - task: PublishPipelineArtifact@1
+    displayName: Publish Pipeline Artifact
+    inputs:
+      artifactName: ROOT$(build.buildId).war
+...
